@@ -1,5 +1,7 @@
 package application;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -43,6 +45,7 @@ public class Controller {
     public ProgressBar disciplineMeter;
     public ProgressBar healthMeter;
     public TextArea actionText;
+    public Pane onlyPet;
 
     public void initialize(){
         Collections.addAll(meters, hungerVal, happyVal, tiredVal, disciplineVal, healthVal);
@@ -71,11 +74,37 @@ public class Controller {
         meters.remove(tiredVal);
         depleteTimer.schedule(new DepleteMeters(meters, this), 5000, 5000);
 
-        droppingsTimer.schedule(new Droppings(this), 17000, 17000);
+        droppingsTimer.schedule(new Droppings(this), 3000, 3000);
+
+        DoubleProperty dbHunger = hungerMeter.progressProperty();
+
+        List<DoubleProperty> progBars = base.getChildren()
+                .stream()
+                .filter(obj -> obj instanceof ProgressBar)
+                .map(progBar -> ((ProgressBar) progBar).progressProperty())
+                .collect(Collectors.toList());
+
+        for (DoubleProperty progBar : progBars){
+            progBar.addListener(
+                    (ObservableValue<? extends Number> prop,
+                     Number oldVal, Number newVal) -> {
+                        //if(newVal.doubleValue() <= 0.3){
+                          //  onlyPet.getStyleClass().clear();
+                            //onlyPet.getStyleClass().add(progBar.getName());
+                        //}
+
+                        System.out.println(progBar.getName());
+                    });
+        }
+
+
     }
 
     public void generateDropping(){
         if(pet.getDroppingsCounter() < 5){
+            if(pet.getDroppingsCounter() > 2){
+
+            }
             pet.setDroppingsCounter(pet.getDroppingsCounter() + 1);
             Random random = new Random();
             int ranX = random.nextInt(230);
@@ -84,7 +113,8 @@ public class Controller {
 
             Pane dropping = new Pane();
             dropping.setPrefSize(50, 50);
-            dropping.setStyle("-fx-background-color: DAE6F3;");
+            dropping.getStyleClass().clear();
+            dropping.getStyleClass().add("dropping");
             dropping.setLayoutX(ranX);
             dropping.setLayoutY(ranY);
             petArea.getChildren().add(dropping);
@@ -102,6 +132,14 @@ public class Controller {
 
         for(Node button : buttons){
             button.setDisable(pet.isSick());
+        }
+
+        if(pet.isSick()){
+            onlyPet.getStyleClass().clear();
+            onlyPet.getStyleClass().add("petSick");
+        } else{
+            onlyPet.getStyleClass().clear();
+            onlyPet.getStyleClass().add("pet1");
         }
     }
 
@@ -149,7 +187,6 @@ public class Controller {
         actionText.setText(careCenter.medicine());
         toggleSick();
     }
-
 
 
 }

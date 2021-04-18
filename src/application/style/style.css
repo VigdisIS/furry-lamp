@@ -5,7 +5,25 @@
 }
 
 .energyImg{
-    -fx-background-image: url("icons/bolt.png");
+    -fx-background-image: url("./icons/bolt.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.happyImg{
+    -fx-background-image: url("./icons/smiley.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.disciplineImg{
+    -fx-background-image: url("./icons/devil.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.heartImg{
+    -fx-background-image: url("./icons/heart.png");
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 }
@@ -18,14 +36,63 @@
 }
 
 .playBtn{
-    -fx-background-image: url("icons/play.png");
+    -fx-background-image: url("./icons/play.png");
     -fx-background-size: 90% 70%;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
+.disciplineBtn{
+    -fx-background-image: url("./icons/finger.png");
+    -fx-background-size: 95% 80%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
 .medicineBtn{
-    -fx-background-image: url("icons/syringe.png");
+    -fx-background-image: url("./icons/syringe.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.bathBtn{
+    -fx-background-image: url("./icons/sponge.png");
+    -fx-background-size: 90% 70%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.sleepBtn{
+    -fx-background-image: url("./icons/sleep.png");
+    -fx-background-size: 90% 70%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.dropping{
+    -fx-background-image: url("./icons/dropping.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.pet1{
+    -fx-background-image: url("./icons/pet1.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.petSick{
+    -fx-background-image: url("./icons/petSick.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.petSleepy{
+    -fx-background-image: url("./icons/petSleepy.png");
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
