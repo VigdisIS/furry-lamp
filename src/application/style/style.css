@@ -1,0 +1,32 @@
+.foodMeterImg{
+    -fx-background-image: url("./icons/burger.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.energyImg{
+    -fx-background-image: url("icons/bolt.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+}
+
+.feedBtn{
+    -fx-background-image: url("./icons/cutlery.png");
+    -fx-background-size: 95% 80%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.playBtn{
+    -fx-background-image: url("icons/play.png");
+    -fx-background-size: 90% 70%;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.medicineBtn{
+    -fx-background-image: url("icons/syringe.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
