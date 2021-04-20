@@ -1,5 +1,7 @@
-package application;
+package application.timerTasks;
 
+import application.GUI.Controller;
+import application.meters.AbstractMeter;
 import javafx.application.Platform;
 
 import java.util.Collection;
@@ -26,8 +28,6 @@ public class DepleteMeters extends TimerTask {
         for (AbstractMeter meter: meters) {
             meter.setMeterVal(Math.round((meter.getMeterVal() - 0.10) * 100.0) / 100.0);
         }
-
         controller.toggleDeath();
-        System.out.println("Depleted meters.");
     }
 }

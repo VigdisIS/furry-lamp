@@ -1,4 +1,5 @@
-package application;
+package application.meters;
+
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -14,7 +15,7 @@ public abstract class AbstractMeter {
         return this.meterVal.get();
     }
 
-    abstract void setMeterVal(double val);
+    public abstract void setMeterVal(double val);
 
     public final DoubleProperty numberProperty() {
         if(meterVal == null) {
@@ -73,5 +74,5 @@ public abstract class AbstractMeter {
         }
     }
 
-    abstract void meterNormal();
+    public abstract void meterNormal();
 }

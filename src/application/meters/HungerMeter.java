@@ -1,4 +1,4 @@
-package application;
+package application.meters;
 
 import javafx.beans.property.DoubleProperty;
 
@@ -17,7 +17,7 @@ public class HungerMeter extends AbstractMeter{
     }
 
     @Override
-    void meterNormal() {
+    public void meterNormal() {
 
     }
 

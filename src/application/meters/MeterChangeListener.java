@@ -1,4 +1,4 @@
-package application;
+package application.meters;
 
 public interface MeterChangeListener {
 

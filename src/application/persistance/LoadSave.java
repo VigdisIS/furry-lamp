@@ -1,4 +1,6 @@
-package application;
+package application.persistance;
+
+import application.meters.AbstractMeter;
 
 import java.io.*;
 import java.util.Scanner;

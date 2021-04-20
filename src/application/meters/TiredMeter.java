@@ -1,4 +1,4 @@
-package application;
+package application.meters;
 
 import javafx.beans.property.DoubleProperty;
 
@@ -6,7 +6,7 @@ public class TiredMeter extends AbstractMeter{
     private boolean exhausted;
 
     @Override
-    void setMeterVal(double val) {
+    public void setMeterVal(double val) {
         this.numberProperty().set(val);
         try{
             fireMetersChanged();
@@ -22,7 +22,7 @@ public class TiredMeter extends AbstractMeter{
     }
 
     @Override
-    void meterNormal() {
+    public void meterNormal() {
         setExhausted(false);
     }
 

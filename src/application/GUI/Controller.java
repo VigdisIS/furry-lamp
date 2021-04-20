@@ -1,5 +1,11 @@
-package application;
+package application.GUI;
 
+import application.core.CareCenter;
+import application.core.Pet;
+import application.meters.*;
+import application.persistance.LoadSave;
+import application.timerTasks.DepleteMeters;
+import application.timerTasks.Droppings;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -76,39 +82,53 @@ public class Controller {
 
         droppingsTimer.schedule(new Droppings(this), 3000, 3000);
 
-        DoubleProperty dbHunger = hungerMeter.progressProperty();
-
-        List<DoubleProperty> progBars = base.getChildren()
+        List<ProgressBar> pMeters = base.getChildren()
                 .stream()
                 .filter(obj -> obj instanceof ProgressBar)
-                .map(progBar -> ((ProgressBar) progBar).progressProperty())
+                .map(progBar -> ((ProgressBar) progBar))
                 .collect(Collectors.toList());
 
-        for (DoubleProperty progBar : progBars){
-            progBar.addListener(
+        for(ProgressBar meter : pMeters){
+            meter.progressProperty().addListener(
                     (ObservableValue<? extends Number> prop,
                      Number oldVal, Number newVal) -> {
-                        //if(newVal.doubleValue() <= 0.3){
-                          //  onlyPet.getStyleClass().clear();
-                            //onlyPet.getStyleClass().add(progBar.getName());
-                        //}
 
-                        System.out.println(progBar.getName());
+                        styleMeter(meter);
+
+                        long count = base.getChildren()
+                                .stream()
+                                .filter(obj -> obj instanceof ProgressBar)
+                                .map(progBar -> ((ProgressBar) progBar).progressProperty().doubleValue())
+                                .filter(val -> val > 0.3)
+                                .count();
+
+                        if(newVal.doubleValue() <= 0.3 && !pet.isSick()){
+                            onlyPet.getStyleClass().clear();
+                            onlyPet.getStyleClass().add(meter.getId() + "Low");
+
+                        } else if (count == 5 && !pet.isSick()){
+                            onlyPet.getStyleClass().clear();
+                            onlyPet.getStyleClass().add("pet1");
+                        }
                     });
         }
+    }
 
-
+    public void styleMeter(ProgressBar meter){
+        if(meter.progressProperty().doubleValue() <= 0.3){
+            meter.setStyle("-fx-accent: red;");
+        } else if(meter.progressProperty().doubleValue() <= 0.5){
+            meter.setStyle("-fx-accent: yellow;");
+        } else{
+            meter.setStyle("-fx-accent: green;");
+        }
     }
 
     public void generateDropping(){
         if(pet.getDroppingsCounter() < 5){
-            if(pet.getDroppingsCounter() > 2){
-
-            }
             pet.setDroppingsCounter(pet.getDroppingsCounter() + 1);
             Random random = new Random();
             int ranX = random.nextInt(230);
-            System.out.println("Random X: "+ranX);
             int ranY = random.nextInt(230);
 
             Pane dropping = new Pane();
@@ -136,10 +156,7 @@ public class Controller {
 
         if(pet.isSick()){
             onlyPet.getStyleClass().clear();
-            onlyPet.getStyleClass().add("petSick");
-        } else{
-            onlyPet.getStyleClass().clear();
-            onlyPet.getStyleClass().add("pet1");
+            onlyPet.getStyleClass().add("healthMeterLow");
         }
     }
 

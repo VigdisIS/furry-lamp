@@ -1,6 +1,8 @@
-package application;
+package application.core;
 
-public class Pet implements MeterChangeListener{
+import application.meters.*;
+
+public class Pet implements MeterChangeListener {
 
     private boolean sick;
     private boolean dead;
@@ -62,7 +64,6 @@ public class Pet implements MeterChangeListener{
 
     public void setDroppingsCounter(int count){
         this.droppingsCounter = count;
-        System.out.println("Current droppingscount: "+getDroppingsCounter());
         if(getDroppingsCounter() == 5){
             setSick(true);
         }

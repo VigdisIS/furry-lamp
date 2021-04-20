@@ -1,4 +1,4 @@
-package application;
+package application.meters;
 
 import javafx.beans.property.DoubleProperty;
 
@@ -20,7 +20,7 @@ public class HappyMeter extends AbstractMeter{
     }
 
     @Override
-    void meterNormal() {
+    public void meterNormal() {
         setHappy(true);
     }
 

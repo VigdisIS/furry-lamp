@@ -1,4 +1,4 @@
-package application;
+package application.core;
 
 public class CareCenter{
     private final Pet pet;

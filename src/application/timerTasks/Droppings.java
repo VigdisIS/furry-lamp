@@ -1,5 +1,6 @@
-package application;
+package application.timerTasks;
 
+import application.GUI.Controller;
 import javafx.application.Platform;
 
 import java.util.TimerTask;
@@ -13,10 +14,7 @@ public class Droppings extends TimerTask {
 
     @Override
     public void run() {
-        Platform.runLater(() -> {
-            controller.generateDropping();
-            System.out.println("New dropping");
-        });
+        Platform.runLater(controller::generateDropping);
 
     }
 }
